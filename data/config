@@ -1,0 +1,33 @@
+# UTM Zone
+utm_zone = 11
+
+# Model directory
+model_dir = cv 
+
+## origin: (-116.7,33.3)
+## upper: (-115.7, 34.2)
+
+# Number of cells in x, y, and z.
+nx = 101
+ny = 91 
+nz = 19
+
+# Depth, in meters (-5km to 16km)
+depth = 9000
+depth_interval = 500
+
+# Corners, in LATLON 
+bottom_right_corner_e	= -115.7
+bottom_right_corner_n   = 33.3
+
+bottom_left_corner_e  	= -116.7
+bottom_left_corner_n  	= 33.3
+
+top_right_corner_e  	= -115.7
+top_right_corner_n	= 34.2
+
+top_left_corner_e 	= -116.7
+top_left_corner_n	= 34.2
+
+## bilinear or trilinear interpolation
+interpolation = off 

@@ -1,0 +1,21 @@
+All communication regarding using LSUCV or UCVM should be directed to 
+software@scec.org. Any scientific questions regarding this model should 
+be directed to the researchers behind this model.
+
+The data and code for this model is based off of the following papers:
+
+Ajala, R., P. Persaud, J. Stock, G. Fuis, J. Hole, M. Goldman and D. Scheirer, 
+        Three-Dimensional Basin and Fault Structure From a Detailed Seismic Velocity 
+        Model of Coachella Valley, Southern California, Journal of Geophysical Research
+        Solid Earth. (Published online: April 11, 2019)
+
+Kaklamanos, J., L. Baise, D. Boore (2011), Estimating Unknown Input Parameters when 
+        Implementing the NGA Ground-Motion Prediction Equations in Engineering Practice.
+        Earthquake Spectra: November 2011, Vol. 27, No. 4, pp. 1219-1235. 
+        https://doi.org/10.1193/1.3650372
+
+Persaud P., Y. Ma, J. M. Stock, J. Hole, G. Fuis and L. Han (2016), Fault zone 
+        characteristics and basin complexity in the southern Salton Trough, 
+        California, Geology, 44(9), p. 747-750, doi:10.1130/G38033.1. Supplementary Material
+
+https://www.geol.lsu.edu/persaud/Data.html
