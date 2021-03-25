@@ -64,21 +64,21 @@ typedef struct coachella_configuration_t {
 	/** Depth in meters */
 	double depth;
 	/** Top left corner easting */
-	double top_left_corner_e;
+	double top_left_corner_lon;
 	/** Top left corner northing */
-	double top_left_corner_n;
+	double top_left_corner_lat;
 	/** Top right corner easting */
-	double top_right_corner_e;
+	double top_right_corner_lon;
 	/** Top right corner northing */
-	double top_right_corner_n;
+	double top_right_corner_lat;
 	/** Bottom left corner easting */
-	double bottom_left_corner_e;
+	double bottom_left_corner_lon;
 	/** Bottom left corner northing */
-	double bottom_left_corner_n;
+	double bottom_left_corner_lat;
 	/** Bottom right corner easting */
-	double bottom_right_corner_e;
+	double bottom_right_corner_lat;
 	/** Bottom right corner northing */
-	double bottom_right_corner_n;
+	double bottom_right_corner_lon;
 	/** Z interval for the data */
 	double depth_interval;
         /** Bilinear or Trilinear Interpolation on or off (1 or 0) */
@@ -150,7 +150,9 @@ void coachella_read_properties(int x, int y, int z, coachella_properties_t *data
 /** Attempts to malloc the model size in memory and read it in. */
 int coachella_try_reading_model(coachella_model_t *model);
 /** Calculates density from Vs. */
-double coachella_calculate_density(double vs);
+double coachella_calculate_density(double vp);
+/** Calculates Vs from Vp. */
+double coachella_calculate_vs(double vp);
 
 // Interpolation Functions
 /** Linearly interpolates two coachella_properties_t structures */

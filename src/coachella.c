@@ -101,8 +101,6 @@ int coachella_query(coachella_point_t *points, coachella_properties_t *data, int
 			data[i].vp = -1;
 			data[i].vs = -1;
 			data[i].rho = -1;
-			data[i].qp = -1;
-			data[i].qs = -1;
 			continue;
 		}
 
@@ -149,9 +147,6 @@ delta_lat;
 
 		data[i].rho = coachella_calculate_density(data[i].vp);
 		data[i].vs = coachella_calculate_vs(data[i].vp);
-
-		data[i].qp = -1;
-		data[i].qs = -1;
 	}
 
 	return SUCCESS;
@@ -172,8 +167,6 @@ void coachella_read_properties(int x, int y, int z, coachella_properties_t *data
 	data->vp = -1;
 	data->vs = -1;
 	data->rho = -1;
-	data->qp = -1;
-	data->qs = -1;
 
 	float *ptr = NULL;
 	FILE *fp = NULL;
@@ -262,9 +255,7 @@ void coachella_linear_interpolation(double percent, coachella_properties_t *x0, 
  * @return SUCCESS
  */
 int coachella_finalize() {
-	if (coachella_velocity_model->vs) free(coachella_velocity_model->vs);
 	if (coachella_velocity_model->vp) free(coachella_velocity_model->vp);
-	if (coachella_velocity_model->rho) free(coachella_velocity_model->rho);
 
 	free(coachella_configuration);
 
@@ -387,13 +378,14 @@ double coachella_calculate_density(double vp) {
 
      vp = vp * 0.001;
      retVal = vp * (1.6612 - vp * (0.4721 - vp * (0.0671 - vp * (0.0043 - vp * 0.000106))));
-     if (retVal < 1.0):
-       retVal = 1.0
+     if (retVal < 1.0) {
+       retVal = 1.0;
+     }
      retVal = retVal * 1000.0;
      return retVal;
 }
 
-**
+/**
  * Calculates the vs based off of Vp. Base on Brocher's formulae
  *
  * https://pubs.usgs.gov/of/2005/1317/of2005-1317.pdf
@@ -408,7 +400,7 @@ double coachella_calculate_vs(double vp) {
      double retVal ;
 
      vp = vp * 0.001;
-     retVal = 0.7858 – vp *(1.2344 + vp *( 0.7949 – vp *(0.1238V + vp * 0.0064)));
+     retVal = 0.7858 - (vp *(1.2344 + vp *( 0.7949 - vp *(0.1238 + vp * 0.0064))));
      retVal = retVal * 1000.0;
      return retVal;
 }
