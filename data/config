@@ -2,7 +2,7 @@
 utm_zone = 11
 
 # Model directory
-model_dir = cv 
+model_dir = cvlsu 
 
 ## origin: (-116.7,33.3)
 ## upper: (-115.7, 34.2)
@@ -19,13 +19,10 @@ depth_interval = 500
 # Corners, in LATLON 
 bottom_right_corner_lon	= -115.7
 bottom_right_corner_lat = 33.3
-
 bottom_left_corner_lon  = -116.7
 bottom_left_corner_lat  = 33.3
-
 top_right_corner_lon  	= -115.7
 top_right_corner_lat	= 34.2
-
 top_left_corner_lon 	= -116.7
 top_left_corner_lat	= 34.2
 

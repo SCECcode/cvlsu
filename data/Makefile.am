@@ -8,4 +8,4 @@ AM_LDFLAGS = ${LDFLAGS}
 install:
 	mkdir -p ${prefix}/data/coachella
 	cp ./config ${prefix}/data
-	cp -R ./cv ${prefix}/data
+	cp -R ./cvlsu ${prefix}/data

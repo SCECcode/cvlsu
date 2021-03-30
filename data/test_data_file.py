@@ -39,7 +39,7 @@ def myrange(start, end, step):
 
 def main():
 
-    f_vp = open("./cv/vp.dat")
+    f_vp = open("./cvlsu/vp.dat")
     vp_arr = np.fromfile(f_vp, dtype=np.float32)
     f_vp.close()
 

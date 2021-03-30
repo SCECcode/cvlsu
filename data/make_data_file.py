@@ -79,7 +79,7 @@ def main():
 
     f = open("./CV_3D_Model.txt")
 
-    f_vp = open("./cv/vp.dat", "wb")
+    f_vp = open("./cvlsu/vp.dat", "wb")
 
 #    print("size of model, ",dimension_x * dimension_y * dimension_z)
 

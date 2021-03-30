@@ -34,7 +34,7 @@ def main():
 
     f_lonlat = open("./CV_3D_Model.txt")
 
-    f_vp = open("./cv/vp.dat")
+    f_vp = open("./cvlsu/vp.dat")
 
     vp_arr = np.fromfile(f_vp, dtype=np.float32)
 
