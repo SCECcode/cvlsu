@@ -6,6 +6,6 @@ AM_FCFLAGS = ${FCFLAGS}
 AM_LDFLAGS = ${LDFLAGS}
 
 install:
-	mkdir -p ${prefix}/data/coachella
+	mkdir -p ${prefix}/data
 	cp ./config ${prefix}/data
 	cp -R ./cvlsu ${prefix}/data
