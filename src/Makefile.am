@@ -2,7 +2,6 @@
 
 # General compiler/linker flags
 AM_CFLAGS = ${CFLAGS}
-AM_FCFLAGS = ${FCFLAGS}
 AM_LDFLAGS = ${LDFLAGS}
 
 TARGETS = libcoachella.a libcoachella.so
@@ -21,7 +20,7 @@ libcoachella.a: coachella_static.o
 	$(AR) rcs $@ $^
 
 libcoachella.so: coachella.o
-	$(FC) -shared $(AM_FCFLAGS) -o libcoachella.so $^ $(AM_LDFLAGS)
+	$(CC) -shared $(AM_CFLAGS) -o libcoachella.so $^ $(AM_LDFLAGS)
 
 coachella.o: coachella.c
 	$(CC) -fPIC -DDYNAMIC_LIBRARY -o $@ -c $^ $(AM_CFLAGS)
