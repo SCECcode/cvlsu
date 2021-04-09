@@ -61,8 +61,8 @@ def main():
 
         if((fvp != "NaN") & (count < 10)) :
           count = count + 1
+          print ">>offset ",offset
           print "xyz:", x_pos," ",y_pos," ",z_pos," >> ", lon_v, " ",lat_v, " ", float(depth_v) , "-->vp", vp, "->fvp", fvp
-          print "offset ",offset
 
         if((float(vp) != -1) & ( (float(vp) > 8000) | (float(vp)<1500))) :
           print lon_v, " ",lat_v, " ", float(depth_v) , "-->vp", vp

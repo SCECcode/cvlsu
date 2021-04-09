@@ -47,6 +47,10 @@ typedef struct cvlsu_properties_t {
 	double vs;
 	/** Density in g/m^3 */
 	double rho;
+        /** NOT USED from basic_property_t */
+        double qp;
+        /** NOT USED from basic_property_t */
+        double qs;
 } cvlsu_properties_t;
 
 /** The COACHELLA configuration structure. */

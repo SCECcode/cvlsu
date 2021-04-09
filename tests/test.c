@@ -1,10 +1,10 @@
 /**
  * @file test.c
- * @brief Bootstraps the test framework for the CVLSU library.
+ * @brief Bootstraps the test framework for the COACHELLEA/CVLSU library.
  * @author - SCEC
  * @version 1.0
  *
- * Tests the CVLSU library by loading it and executing the code as
+ * Tests the COACHELLEA/CVLSU library by loading it and executing the code as
  * UCVM would do it.
  *
  */
@@ -12,7 +12,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <assert.h>
-#include "cslsu.h"
+#include "cvlsu.h"
 
 /**
  * Initializes and runs the test program. Tests link against the
@@ -26,11 +26,11 @@
 int main(int argc, const char* argv[]) {
 
 	// Declare the structures.
-	cslsu_point_t pt;
-	cslsu_properties_t ret;
+	cvlsu_point_t pt;
+	cvlsu_properties_t ret;
 
 	// Initialize the model.
-	assert(cslsu_init("../", "cvlsu") == 0);
+	assert(cvlsu_init("../", "cvlsu") == 0);
 
 	printf("Loaded the model successfully.\n");
 
@@ -39,7 +39,7 @@ int main(int argc, const char* argv[]) {
 	pt.latitude = 34;
 	pt.depth = 0;
 
-	cslsu_query(&pt, &ret, 1);
+	cvlsu_query(&pt, &ret, 1);
 
 	assert(ret.vs > 0);
 	assert(ret.vp > 0);
@@ -48,7 +48,7 @@ int main(int argc, const char* argv[]) {
 	printf("Query was successful.\n");
 
 	// Close the model.
-	assert(cslsu_finalize() == 0);
+	assert(cvlsu_finalize() == 0);
 
 	printf("Model closed successfully.\n");
 
