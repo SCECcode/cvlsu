@@ -1,6 +1,6 @@
 # Autoconf/automake file
 
-bin_PROGRAMS = test_coachella
+bin_PROGRAMS = test_cvlsu
 
 # General compiler/linker flags
 AM_CFLAGS = ${CFLAGS}
@@ -13,10 +13,10 @@ all: $(bin_PROGRAMS)
 
 install:
 	mkdir -p ${prefix}/tests
-	cp test_coachella ${prefix}/tests
+	cp test_cvlsu ${prefix}/tests
 
-test_coachella: $(objects)
-	$(CC) -o $@ $^ $(AM_CFLAGS) -L../src -lcoachella $(AM_LDFLAGS)
+test_cvlsu: $(objects)
+	$(CC) -o $@ $^ $(AM_CFLAGS) -L../src -lcvlsu $(AM_LDFLAGS)
 
 $(objects): %.o: %.c
 	$(CC) -o $@ -c $^ $(AM_CFLAGS) -I../src/ $(AM_CFLAGS)

@@ -4,7 +4,7 @@
 AM_CFLAGS = ${CFLAGS}
 AM_LDFLAGS = ${LDFLAGS}
 
-TARGETS = libcoachella.a libcoachella.so
+TARGETS = libcvlsu.a libcvlsu.so
 
 all: $(TARGETS)
 
@@ -12,20 +12,20 @@ install:
 	mkdir -p ${prefix}
 	mkdir -p ${prefix}/lib
 	mkdir -p ${prefix}/include
-	cp libcoachella.so ${prefix}/lib
-	cp libcoachella.a ${prefix}/lib
-	cp coachella.h ${prefix}/include
+	cp libcvlsu.so ${prefix}/lib
+	cp libcvlsu.a ${prefix}/lib
+	cp cvlsu.h ${prefix}/include
 
-libcoachella.a: coachella_static.o 
+libcvlsu.a: cvlsu_static.o 
 	$(AR) rcs $@ $^
 
-libcoachella.so: coachella.o
-	$(CC) -shared $(AM_CFLAGS) -o libcoachella.so $^ $(AM_LDFLAGS)
+libcvlsu.so: cvlsu.o
+	$(CC) -shared $(AM_CFLAGS) -o libcvlsu.so $^ $(AM_LDFLAGS)
 
-coachella.o: coachella.c
+cvlsu.o: cvlsu.c
 	$(CC) -fPIC -DDYNAMIC_LIBRARY -o $@ -c $^ $(AM_CFLAGS)
 	
-coachella_static.o: coachella.c
+cvlsu_static.o: cvlsu.c
 	$(CC) -o $@ -c $^ $(AM_CFLAGS)
 	
 clean:
