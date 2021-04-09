@@ -13,7 +13,7 @@
 #include "cvlsu.h"
 
 /**
- * Initializes the COACHELLA plugin model within the UCVM framework. In order to initialize
+ * Initializes the CVLSU plugin model within the UCVM framework. In order to initialize
  * the model, we must provide the UCVM install path and optionally a place in memory
  * where the model already exists.
  *
@@ -67,7 +67,7 @@ int cvlsu_init(const char *dir, const char *label) {
 }
 
 /**
- * Queries COACHELLA at the given points and returns the data that it finds.
+ * Queries CVLSU at the given points and returns the data that it finds.
  *
  * @param points The points at which the queries will be made.
  * @param data The data that will be returned (Vp, Vs, density, Qs, and/or Qp).
@@ -90,11 +90,14 @@ int cvlsu_query(cvlsu_point_t *points, cvlsu_properties_t *data, int numpoints) 
 	for (i = 0; i < numpoints; i++) {
 		lon_e = points[i].longitude; 
 		lat_n = points[i].latitude; 
+//printf(">>>>>>>>>working on i >> %d <<<<<<<<< %lf %lf\n",i, lon_e, lat_n);
 
 		// Which point base point does that correspond to?
 		load_y_coord = (int)(round((lat_n - cvlsu_configuration->bottom_left_corner_lat) / delta_lat));
 		load_x_coord = (int)(round((lon_e - cvlsu_configuration->bottom_left_corner_lon) / delta_lon));
 		load_z_coord = (int)((points[i].depth)/1000);
+
+//printf("coord %d %d %d\n", load_x_coord, load_y_coord, load_z_coord);
 
 		// Are we outside the model's X and Y and Z boundaries?
 		if (points[i].depth > cvlsu_configuration->depth || load_x_coord > cvlsu_configuration->nx -1  || load_y_coord > cvlsu_configuration->ny -1 || load_x_coord < 0 || load_y_coord < 0 || load_z_coord < 0) {
@@ -110,6 +113,7 @@ int cvlsu_query(cvlsu_point_t *points, cvlsu_properties_t *data, int numpoints) 
 delta_lat;
 		z_percent = fmod(points[i].depth, cvlsu_configuration->depth_interval) / cvlsu_configuration->depth_interval;
 
+//printf("percent %lf %lf %lf\n", x_percent, y_percent, z_percent);
 		if (load_z_coord == 0 && z_percent == 0) {
 			// We're below the model boundaries. Bilinearly interpolate the bottom plane and use that value.
 			load_z_coord = 0;
@@ -145,8 +149,8 @@ delta_lat;
                     }
 		}
 
-		data[i].rho = cvlsu_calculate_density(data[i].vp);
-		data[i].vs = cvlsu_calculate_vs(data[i].vp);
+	       data[i].rho = cvlsu_calculate_density(data[i].vp);
+	       data[i].vs = cvlsu_calculate_vs(data[i].vp);
 	}
 
 	return SUCCESS;
@@ -173,6 +177,7 @@ void cvlsu_read_properties(int x, int y, int z, cvlsu_properties_t *data) {
 
 	int location = z * (cvlsu_configuration->nx * cvlsu_configuration->ny) + (y * cvlsu_configuration->nx) + x;
 
+//printf("XX location %d \n", location);
 	// Check our loaded components of the model.
 	if (cvlsu_velocity_model->vp_status == 2) {
 		// Read from memory.
@@ -382,7 +387,7 @@ double cvlsu_calculate_density(double vp) {
      double t3 = ((vp * vp * vp) * 0.0671);
      double t4 = ((vp * vp * vp * vp) * 0.0043);
      double t5 = ((vp * vp * vp * vp * vp) * 0.000106);
-     retVal = t1 - t2 + t3 - t4 + t5; 
+     retVal = t1 - t2 + t3 - t4 + t5;
      if (retVal < 1.0) {
        retVal = 1.0;
      }
@@ -406,11 +411,12 @@ double cvlsu_calculate_vs(double vp) {
 
      vp = vp * 0.001;
      double t1= (vp * 1.2344);
-     double t2= ((vp * vp)* 0.7949);
+     double t2= ((vp * vp)* 0.7949); 
      double t3= ((vp * vp * vp) * 0.1238);
      double t4= ((vp * vp * vp * vp) * 0.0064);
      retVal = 0.7858 - t1 + t2 - t3 + t4;
      retVal = retVal * 1000.0;
+
      return retVal;
 }
 
