@@ -10,4 +10,5 @@ install:
 	cp ./config ${prefix}/data
 	cp -R ./cvlsu ${prefix}/data
 	chmod og+r ${prefix}/data/config
-	chmod -R og+rx ${prefix}/data/cvlsu
+	chmod -R og+r ${prefix}/data/cvlsu
+	chmod og+x ${prefix}/data/cvlsu
