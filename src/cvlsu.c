@@ -40,7 +40,7 @@ int cvlsu_init(const char *dir, const char *label) {
         }
 
 	// Set up the data directory.
-	sprintf(cvlsu_data_directory, "%s/model/%s/data/%s/", dir, label, cvlsu_configuration->model_dir);
+	sprintf(cvlsu_data_directory, "%s/model/%s/data/%s", dir, label, cvlsu_configuration->model_dir);
 
 	// Can we allocate the model, or parts of it, to memory. If so, we do.
 	tempVal = cvlsu_try_reading_model(cvlsu_velocity_model);
@@ -470,10 +470,8 @@ int cvlsu_try_reading_model(cvlsu_model_t *model) {
 
 	if (file_count == 0)
 		return FAIL;
-	else if (file_count > 0 && all_read_to_memory == 0)
+	else 
 		return SUCCESS;
-	else
-		return 2;
 }
 
 // The following functions are for dynamic library mode. If we are compiling
