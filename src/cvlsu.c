@@ -33,8 +33,11 @@ int cvlsu_init(const char *dir, const char *label) {
 	sprintf(configbuf, "%s/model/%s/data/config", dir, label);
 
 	// Read the configuration file.
-	if (cvlsu_read_configuration(configbuf, cvlsu_configuration) != SUCCESS)
+	if (cvlsu_read_configuration(configbuf, cvlsu_configuration) != SUCCESS) {
 		tempVal = FAIL;
+                print_error("No configuration file was found to read from.");
+                return FAIL;
+        }
 
 	// Set up the data directory.
 	sprintf(cvlsu_data_directory, "%s/model/%s/data/%s/", dir, label, cvlsu_configuration->model_dir);
