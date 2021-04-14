@@ -34,7 +34,6 @@ int cvlsu_init(const char *dir, const char *label) {
 
 	// Read the configuration file.
 	if (cvlsu_read_configuration(configbuf, cvlsu_configuration) != SUCCESS) {
-		tempVal = FAIL;
                 print_error("No configuration file was found to read from.");
                 return FAIL;
         }
@@ -93,14 +92,14 @@ int cvlsu_query(cvlsu_point_t *points, cvlsu_properties_t *data, int numpoints) 
 	for (i = 0; i < numpoints; i++) {
 		lon_e = points[i].longitude; 
 		lat_n = points[i].latitude; 
-//printf(">>>>>>>>>working on i >> %d <<<<<<<<< %lf %lf\n",i, lon_e, lat_n);
+//fprintf(stderr,">>>>>>>>>working on i >> %d <<<<<<<<< %lf %lf\n",i, lon_e, lat_n);
 
 		// Which point base point does that correspond to?
 		load_y_coord = (int)(round((lat_n - cvlsu_configuration->bottom_left_corner_lat) / delta_lat));
 		load_x_coord = (int)(round((lon_e - cvlsu_configuration->bottom_left_corner_lon) / delta_lon));
 		load_z_coord = (int)((points[i].depth)/1000);
 
-//printf("coord %d %d %d\n", load_x_coord, load_y_coord, load_z_coord);
+//fprintf(stderr,"coord %d %d %d\n", load_x_coord, load_y_coord, load_z_coord);
 
 		// Are we outside the model's X and Y and Z boundaries?
 		if (points[i].depth > cvlsu_configuration->depth || load_x_coord > cvlsu_configuration->nx -1  || load_y_coord > cvlsu_configuration->ny -1 || load_x_coord < 0 || load_y_coord < 0 || load_z_coord < 0) {
@@ -116,7 +115,7 @@ int cvlsu_query(cvlsu_point_t *points, cvlsu_properties_t *data, int numpoints) 
 delta_lat;
 		z_percent = fmod(points[i].depth, cvlsu_configuration->depth_interval) / cvlsu_configuration->depth_interval;
 
-//printf("percent %lf %lf %lf\n", x_percent, y_percent, z_percent);
+//fprintf(stderr,"percent %lf %lf %lf\n", x_percent, y_percent, z_percent);
 		if (load_z_coord == 0 && z_percent == 0) {
 			// We're below the model boundaries. Bilinearly interpolate the bottom plane and use that value.
 			load_z_coord = 0;
@@ -180,16 +179,17 @@ void cvlsu_read_properties(int x, int y, int z, cvlsu_properties_t *data) {
 
 	int location = z * (cvlsu_configuration->nx * cvlsu_configuration->ny) + (y * cvlsu_configuration->nx) + x;
 
-//printf("XX location %d \n", location);
 	// Check our loaded components of the model.
 	if (cvlsu_velocity_model->vp_status == 2) {
 		// Read from memory.
 		ptr = (float *)cvlsu_velocity_model->vp;
 		data->vp = ptr[location];
+//fprintf(stderr,"XX read from location memory %d, %lf\n", location, data->vp);
 	} else if (cvlsu_velocity_model->vp_status == 1) {
 		// Read from file.
 		fseek(fp, location * sizeof(float), SEEK_SET);
 		fread(&(data->vp), sizeof(float), 1, fp);
+//fprintf(stderr,"XX read from location file %d, %lf\n", location, data->vp);
 	}
 }
 
@@ -470,8 +470,10 @@ int cvlsu_try_reading_model(cvlsu_model_t *model) {
 
 	if (file_count == 0)
 		return FAIL;
-	else 
-		return SUCCESS;
+        else if (all_read_to_memory == 0)
+                return SUCCESS;
+        else
+                return 2;
 }
 
 // The following functions are for dynamic library mode. If we are compiling
