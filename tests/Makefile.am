@@ -15,7 +15,7 @@ install:
 	mkdir -p ${prefix}/tests
 	cp test_cvlsu ${prefix}/tests
 
-test_cvlsu: $(objects)
+test_cvlsu$(EXEEXT): $(objects)
 	$(CC) -o $@ $^ $(AM_CFLAGS) -L../src -lcvlsu $(AM_LDFLAGS)
 
 $(objects): %.o: %.c

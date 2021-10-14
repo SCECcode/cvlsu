@@ -2,7 +2,7 @@
 # Process this file with autoconf to produce a configure script.
 
 AC_PREREQ(2.61)
-AC_INIT(IMPERIAL, 1.0, mei@usc.edu)
+AC_INIT(COACHELLA, 1.0, mei@usc.edu)
 AC_CONFIG_SRCDIR([src])
 AM_INIT_AUTOMAKE()
 

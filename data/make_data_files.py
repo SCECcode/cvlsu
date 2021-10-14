@@ -60,7 +60,6 @@ def download_urlfile(url,fname):
 def main():
 
     # Set our variable defaults.
-    username = ""
     path = ""
     mdir = ""
 
