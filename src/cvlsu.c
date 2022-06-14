@@ -12,6 +12,10 @@
 
 #include "cvlsu.h"
 
+/** The config of the model */
+char *cvlsu_config_string=NULL;
+int cvlsu_config_sz=0;
+
 /**
  * Initializes the CVLSU plugin model within the UCVM framework. In order to initialize
  * the model, we must provide the UCVM install path and optionally a place in memory
@@ -24,6 +28,10 @@
 int cvlsu_init(const char *dir, const char *label) {
 	int tempVal = 0;
 	char configbuf[512];
+
+        cvlsu_config_string = calloc(CVLSU_CONFIG_MAX, sizeof(char));
+        cvlsu_config_string[0]='\0';
+        cvlsu_config_sz=0;
 
 	// Initialize variables.
 	cvlsu_configuration = calloc(1, sizeof(cvlsu_configuration_t));
@@ -61,6 +69,10 @@ int cvlsu_init(const char *dir, const char *label) {
 						  pow(cvlsu_configuration->top_left_corner_lon - cvlsu_configuration->bottom_left_corner_lon, 2.0f));
 	cvlsu_total_width_m  = sqrt(pow(cvlsu_configuration->top_right_corner_lat - cvlsu_configuration->top_left_corner_lat, 2.0f) +
 						  pow(cvlsu_configuration->top_right_corner_lon - cvlsu_configuration->top_left_corner_lon, 2.0f));
+
+        /* setup config_string */
+        sprintf(cvlsu_config_string,"config = %s\n",configbuf);
+        cvlsu_config_sz=1;
 
 	// Let everyone know that we are initialized and ready for business.
 	cvlsu_is_initialized = 1;
@@ -287,6 +299,24 @@ int cvlsu_version(char *ver, int len)
   memset(ver, 0, len);
   strncpy(ver, cvlsu_version_string, verlen);
   return 0;
+}
+
+/**
+ * Returns the model config information.
+ *
+ * @param key Config key string to return.
+ * @param sz Number of config term to return.
+ * @return Zero
+ */
+int cvlsu_config(char **config, int *sz)
+{
+  int len=strlen(cvlsu_config_string);
+  if(len > 0) {
+    *config=cvlsu_config_string;
+    *sz=cvlsu_config_sz;
+    return UCVM_CODE_SUCCESS;
+  }
+  return UCVM_CODE_ERROR;
 }
 
 /**
@@ -522,6 +552,18 @@ int model_version(char *ver, int len) {
 	return cvlsu_version(ver, len);
 }
 
+/** 
+ * Version function loaded and called by the UCVM library. Calls cvlsu_config.
+ *                  
+ * @param ver Config string to return.
+ * @param sz sz of configs.
+ * @return Zero
+ */
+int model_config(char **config, int *sz) {
+        return cvlsu_version(config, sz);
+}
+
+
 int (*get_model_init())(const char *, const char *) {
         return &cvlsu_init;
 }
@@ -533,6 +575,9 @@ int (*get_model_finalize())() {
 }
 int (*get_model_version())(char *, int) {
          return &cvlsu_version;
+}
+int (*get_model_config())(char **, int*) {
+         return &cvlsu_config;
 }
 
 
