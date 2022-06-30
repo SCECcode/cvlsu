@@ -560,7 +560,7 @@ int model_version(char *ver, int len) {
  * @return Zero
  */
 int model_config(char **config, int *sz) {
-        return cvlsu_version(config, sz);
+        return cvlsu_config(config, sz);
 }
 
 

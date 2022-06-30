@@ -29,7 +29,7 @@
 #define NA -1 
 
 /* config string */
-#define CVMS_CONFIG_MAX 1000
+#define CVLSU_CONFIG_MAX 1000
 
 // Structures
 /** Defines a point (latitude, longitude, and depth) in WGS84 format */
