@@ -314,9 +314,9 @@ int cvlsu_config(char **config, int *sz)
   if(len > 0) {
     *config=cvlsu_config_string;
     *sz=cvlsu_config_sz;
-    return UCVM_CODE_SUCCESS;
+    return SUCCESS;
   }
-  return UCVM_CODE_ERROR;
+  return FAIL;
 }
 
 /**
