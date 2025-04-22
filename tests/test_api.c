@@ -30,7 +30,12 @@ int main(int argc, const char* argv[]) {
 	cvlsu_properties_t ret;
 
 	// Initialize the model.
-	assert(cvlsu_init("../", "cvlsu") == 0);
+        char *envstr=getenv("UCVM_INSTALL_PATH");
+        if(envstr != NULL) {
+           assert(cvlsu_init(envstr, "cvlsu") == 0);
+           } else {
+             assert(cvlsu_init("..", "cvlsu") == 0);
+        }
 
 	printf("Loaded the model successfully.\n");
 
