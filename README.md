@@ -1,5 +1,8 @@
 # Coachella  
 
+[![License](https://img.shields.io/badge/License-BSD_3--Clause-blue.svg)](https://opensource.org/licenses/BSD-3-Clause)
+
+
 SSIP Coachella Valley model provides P-wave velocities for the shallow 
 crust in the northern Salton Trough. The model combines travel-time 
 observations from explosions recorded during the Salton Seismic Imaging 
