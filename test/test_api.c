@@ -40,9 +40,9 @@ int main(int argc, const char* argv[]) {
 	printf("Loaded the model successfully.\n");
 
 	// Query a point.
-	pt.longitude = -118;
-	pt.latitude = 34;
-	pt.depth = 0;
+	pt.longitude = -116.4;
+	pt.latitude = 33.5;
+	pt.depth = 1000;
 
 	cvlsu_query(&pt, &ret, 1);
 
