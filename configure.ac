@@ -22,12 +22,12 @@ AC_C_CONST
 # Checks for library functions.
 
 # Set final CFLAGS and LDFLAGS
-CFLAGS="$CHECK_CFLAGS $ETREE_INCL $PROJ4_INCL"
-LDFLAGS="$CHECK_LDFLAGS $ETREE_LIB $PROJ4_LIB"
+CFLAGS="$CHECK_CFLAGS"
+LDFLAGS="$CHECK_LDFLAGS"
 LDFLAGS="$LDFLAGS -lm"
 
 AC_CONFIG_FILES([Makefile
 		data/Makefile
 		src/Makefile
-		tests/Makefile])
+		test/Makefile])
 AC_OUTPUT

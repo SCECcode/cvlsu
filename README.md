@@ -1,6 +1,8 @@
-# Coachella  
+# cvlsu  
 
 [![License](https://img.shields.io/badge/License-BSD_3--Clause-blue.svg)](https://opensource.org/licenses/BSD-3-Clause)
+![GitHub repo size](https://img.shields.io/github/repo-size/sceccode/cvlsu)
+[![cvlsu-ucvm-ci Actions Status](https://github.com/SCECcode/cvlsu/workflows/cvlsu-ucvm-ci/badge.svg)](https://github.com/SCECcode/cvlsu/actions)
 
 
 SSIP Coachella Valley model provides P-wave velocities for the shallow 
@@ -13,14 +15,6 @@ the surface to 9-km depth.
 
 This package is intended to be installed as part of the UCVM framework,
 version 25.x or higher. 
-
-## Library
-
-The library ./lib/libcvlsu.a may be statically linked into any
-user application. Also, if your system supports dynamic linking,
-you will also have a ./lib/libcvlsu.so file that can be used
-for dynamic linking. The header file defining the API is located
-in ./include/cvlsu.h.
 
 ## Contact the authors
 

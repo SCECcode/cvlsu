@@ -3,8 +3,8 @@
 bin_PROGRAMS = test_cvlsu
 
 # General compiler/linker flags
-AM_CFLAGS = ${CFLAGS}
-AM_LDFLAGS = ${LDFLAGS}
+AM_CFLAGS = ${CFLAGS} -I../src
+AM_LDFLAGS = ${LDFLAGS} -L../src -lcvlsu
 
 objects = test_api.o
 TARGETS = $(bin_PROGRAMS)
@@ -16,7 +16,14 @@ install:
 	cp test_cvlsu ${prefix}/tests
 
 test_cvlsu$(EXEEXT): $(objects)
-	$(CC) -o $@ $^ $(AM_CFLAGS) -L../src -lcvlsu $(AM_LDFLAGS)
+	$(CC) -o $@ $^ $(AM_LDFLAGS)
 
 $(objects): %.o: %.c
-	$(CC) -o $@ -c $^ $(AM_CFLAGS) -I../src/ $(AM_CFLAGS)
+	$(CC) -o $@ -c $^ $(AM_CFLAGS) 
+
+run_unit : test_cvlsu
+	./test_cvlsu
+
+clean :
+	rm -rf *~ *.o test_cvlsu
+
