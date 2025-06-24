@@ -1,5 +1,7 @@
 # cvlsu  
 
+<a href="https://github.com/sceccode/cvlsu.git"><img src="https://github.com/sceccode/cvlsu/wiki/images/cvlsu_logo.png"></a>
+
 [![License](https://img.shields.io/badge/License-BSD_3--Clause-blue.svg)](https://opensource.org/licenses/BSD-3-Clause)
 ![GitHub repo size](https://img.shields.io/github/repo-size/sceccode/cvlsu)
 [![cvlsu-ucvm-ci Actions Status](https://github.com/SCECcode/cvlsu/workflows/cvlsu-ucvm-ci/badge.svg)](https://github.com/SCECcode/cvlsu/actions)
