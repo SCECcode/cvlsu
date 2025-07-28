@@ -13,6 +13,8 @@ observations from explosions recorded during the Salton Seismic Imaging
 Project (SSIP) with local earthquake recordings. The model extends from
 the surface to 9-km depth.
 
+Ajala, R., Persaud, P., Stock, J. M., Fuis, G. S., Hole, J. A., Goldman, M., & Scheirer, D. (2019). Three‐Dimensional Basin and Fault Structure From a Detailed Seismic Velocity Model of Coachella Valley, Southern California. Journal of Geophysical Research: Solid Earth,. doi:10.1029/2018JB016260
+
 ## Installation
 
 This package is intended to be installed as part of the UCVM framework,
